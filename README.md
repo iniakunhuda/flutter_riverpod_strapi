@@ -1,16 +1,21 @@
-# crud_riverpod
+## Flutter RiverPod & Strapi RESTAPI
 
-A new Flutter project.
+<h1 align="center">Flutter RiverPod & Strapi RESTAPI</h1>
 
-## Getting Started
+<br>
 
-This project is a starting point for a Flutter application.
+<a href="https://flutter.io/">Flutter</a> Flutter allows you to build beautiful native apps on iOS and Android Platforms from a single codebase. The main goal of this repository is to learn how to use River with simple implementation of CRUD from Strapi API
 
-A few resources to get you started if this is your first Flutter project:
+<div>
+<img src="https://raw.githubusercontent.com/iniakunhuda/flutter_riverpod_strapi/main/preview/preview_1.png" alt="feed example" width="200">
+<img src="https://raw.githubusercontent.com/iniakunhuda/flutter_riverpod_strapi/main/preview/preview_2.png" alt="feed example" width="200">
+<img src="https://raw.githubusercontent.com/iniakunhuda/flutter_riverpod_strapi/main/preview/preview_3.png" alt="feed example" width="200">
+</div>
+</p>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Package
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- RiverPod (https://riverpod.dev/)
+- Strapi API (https://strapi.io/)
+- dio (https://pub.dev/packages/dio)
+- dartz (https://pub.dev/packages/dartz)
