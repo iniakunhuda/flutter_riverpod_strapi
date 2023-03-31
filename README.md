@@ -10,6 +10,7 @@
 <img src="https://raw.githubusercontent.com/iniakunhuda/flutter_riverpod_strapi/main/preview/preview_1.png" alt="feed example" width="200">
 <img src="https://raw.githubusercontent.com/iniakunhuda/flutter_riverpod_strapi/main/preview/preview_2.png" alt="feed example" width="200">
 <img src="https://raw.githubusercontent.com/iniakunhuda/flutter_riverpod_strapi/main/preview/preview_3.png" alt="feed example" width="200">
+<img src="https://raw.githubusercontent.com/iniakunhuda/flutter_riverpod_strapi/main/preview/preview_4.png" alt="feed example" width="200">
 </div>
 </p>
 
