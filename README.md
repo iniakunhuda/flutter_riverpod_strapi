@@ -22,4 +22,5 @@
 - dartz (https://pub.dev/packages/dartz)
 
 ### Strapi Setup
+Running in local / deploy to production
 <img src="https://raw.githubusercontent.com/iniakunhuda/flutter_riverpod_strapi/main/preview/strapi.png" alt="feed example" width="100%">
