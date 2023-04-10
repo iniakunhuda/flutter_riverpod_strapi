@@ -1,24 +1,29 @@
-import 'package:crud_riverpod/features/user/data/repositories/user_repository.dart';
-import 'package:crud_riverpod/features/user/presentation/pages/user_page_controller.dart';
-import 'package:crud_riverpod/pages/home/home_screen.dart';
-import 'package:crud_riverpod/requests/request_user.dart';
-import 'package:crud_riverpod/services/network_manager.dart';
-import 'package:dartz/dartz.dart';
+import 'package:crud_riverpod/features/user/models/user_model.dart';
+import 'package:crud_riverpod/features/user/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CreateScreen extends ConsumerStatefulWidget {
-  const CreateScreen({super.key});
+class EditScreen extends ConsumerStatefulWidget {
+  UserModel user;
+
+  EditScreen({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _CreateScreenState();
+  ConsumerState<EditScreen> createState() => _EditScreenState();
 }
 
-class _CreateScreenState extends ConsumerState<CreateScreen> {
-  final fnameController = TextEditingController(text: "");
-  final lnameController = TextEditingController(text: "");
-  final emailController = TextEditingController(text: "");
-  final avatarController = TextEditingController(text: "");
+class _EditScreenState extends ConsumerState<EditScreen> {
+  final fnameController = TextEditingController();
+
+  final lnameController = TextEditingController();
+
+  final emailController = TextEditingController();
+
+  final avatarController = TextEditingController();
 
   void clearInput() {
     fnameController.clear();
@@ -37,9 +42,14 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
 
   @override
   Widget build(BuildContext context) {
+    fnameController.text = widget.user.first_name;
+    lnameController.text = widget.user.last_name;
+    emailController.text = widget.user.email;
+    avatarController.text = widget.user.avatar;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("New Contact"),
+        title: const Text("Edit Contact"),
       ),
       body: Container(
         padding: const EdgeInsets.all(20),
@@ -121,25 +131,21 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {
-                        RequestUser newUser = RequestUser(
+                      onPressed: () async {
+                        UserRequest newUser = UserRequest(
                           first_name: fnameController.text,
                           last_name: lnameController.text,
                           email: emailController.text,
                           avatar: avatarController.text,
                         );
+
                         ref
                             .read(userRepoProvider)
-                            .createOne(newUser)
+                            .updateOne(widget.user.id, newUser)
                             .then((value) {
-                          value.fold((l) {
-                            showSnackbar(context, "Error! ${l.toString()}");
-                          }, (r) {
-                            clearInput();
-                            showSnackbar(
-                                context, "Success! Created new contact");
-                            Navigator.pop(context);
-                          });
+                          showSnackbar(context, "Success! Updated contact");
+                          Navigator.of(context)
+                              .popUntil((route) => route.isFirst);
                         });
                       },
                       child: Text("Save"),
