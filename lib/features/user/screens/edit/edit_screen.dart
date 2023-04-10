@@ -1,9 +1,7 @@
+import 'package:crud_riverpod/features/user/models/user_model.dart';
 import 'package:crud_riverpod/features/user/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 
-import 'package:crud_riverpod/features/user/models/user_model.dart';
-import 'package:crud_riverpod/requests/request_user.dart';
-import 'package:crud_riverpod/services/network_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EditScreen extends ConsumerStatefulWidget {
@@ -44,10 +42,10 @@ class _EditScreenState extends ConsumerState<EditScreen> {
 
   @override
   Widget build(BuildContext context) {
-    fnameController.text = widget.user.attributes.firstName;
-    lnameController.text = widget.user.attributes.lastName;
-    emailController.text = widget.user.attributes.email;
-    avatarController.text = widget.user.attributes.avatar;
+    fnameController.text = widget.user.first_name;
+    lnameController.text = widget.user.last_name;
+    emailController.text = widget.user.email;
+    avatarController.text = widget.user.avatar;
 
     return Scaffold(
       appBar: AppBar(
@@ -134,22 +132,13 @@ class _EditScreenState extends ConsumerState<EditScreen> {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () async {
-                        RequestUser newUser = RequestUser(
+                        UserRequest newUser = UserRequest(
                           first_name: fnameController.text,
                           last_name: lnameController.text,
                           email: emailController.text,
                           avatar: avatarController.text,
                         );
 
-                        // try {
-                        //   await NetworkManager().updateOne(user.id, newUser);
-                        //   Navigator.of(context)
-                        //       .popUntil((route) => route.isFirst);
-                        //   showSnackbar(context, "Success! Updated contact");
-                        // } catch (e) {
-                        //   showSnackbar(context,
-                        //       "Failed! Update contact failed \n Error ${e.toString()}");
-                        // }
                         ref
                             .read(userRepoProvider)
                             .updateOne(widget.user.id, newUser)

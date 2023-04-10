@@ -1,8 +1,9 @@
+import 'package:crud_riverpod/features/user/dto/user_dto.dart';
+import 'package:crud_riverpod/features/user/models/user_model.dart';
 import 'package:crud_riverpod/features/user/repositories/user_repository.dart';
-import 'package:crud_riverpod/features/user/presentation/controller/user_page_controller.dart';
-import 'package:crud_riverpod/requests/request_user.dart';
-import 'package:crud_riverpod/services/network_manager.dart';
+import 'package:crud_riverpod/features/user/controllers/user_controller.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -121,12 +122,13 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        RequestUser newUser = RequestUser(
+                        UserRequest newUser = UserRequest(
                           first_name: fnameController.text,
                           last_name: lnameController.text,
                           email: emailController.text,
                           avatar: avatarController.text,
                         );
+
                         ref
                             .read(userRepoProvider)
                             .createOne(newUser)
