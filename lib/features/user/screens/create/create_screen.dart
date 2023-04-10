@@ -1,31 +1,23 @@
-import 'package:crud_riverpod/features/user/data/repositories/user_repository.dart';
-import 'package:flutter/material.dart';
-
-import 'package:crud_riverpod/features/user/data/models/user_model.dart';
+import 'package:crud_riverpod/features/user/repositories/user_repository.dart';
+import 'package:crud_riverpod/features/user/presentation/controller/user_page_controller.dart';
 import 'package:crud_riverpod/requests/request_user.dart';
 import 'package:crud_riverpod/services/network_manager.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class EditScreen extends ConsumerStatefulWidget {
-  UserModel user;
-
-  EditScreen({
-    Key? key,
-    required this.user,
-  }) : super(key: key);
+class CreateScreen extends ConsumerStatefulWidget {
+  const CreateScreen({super.key});
 
   @override
-  ConsumerState<EditScreen> createState() => _EditScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _CreateScreenState();
 }
 
-class _EditScreenState extends ConsumerState<EditScreen> {
-  final fnameController = TextEditingController();
-
-  final lnameController = TextEditingController();
-
-  final emailController = TextEditingController();
-
-  final avatarController = TextEditingController();
+class _CreateScreenState extends ConsumerState<CreateScreen> {
+  final fnameController = TextEditingController(text: "");
+  final lnameController = TextEditingController(text: "");
+  final emailController = TextEditingController(text: "");
+  final avatarController = TextEditingController(text: "");
 
   void clearInput() {
     fnameController.clear();
@@ -44,14 +36,9 @@ class _EditScreenState extends ConsumerState<EditScreen> {
 
   @override
   Widget build(BuildContext context) {
-    fnameController.text = widget.user.attributes.firstName;
-    lnameController.text = widget.user.attributes.lastName;
-    emailController.text = widget.user.attributes.email;
-    avatarController.text = widget.user.attributes.avatar;
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Edit Contact"),
+        title: const Text("New Contact"),
       ),
       body: Container(
         padding: const EdgeInsets.all(20),
@@ -133,30 +120,25 @@ class _EditScreenState extends ConsumerState<EditScreen> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () async {
+                      onPressed: () {
                         RequestUser newUser = RequestUser(
                           first_name: fnameController.text,
                           last_name: lnameController.text,
                           email: emailController.text,
                           avatar: avatarController.text,
                         );
-
-                        // try {
-                        //   await NetworkManager().updateOne(user.id, newUser);
-                        //   Navigator.of(context)
-                        //       .popUntil((route) => route.isFirst);
-                        //   showSnackbar(context, "Success! Updated contact");
-                        // } catch (e) {
-                        //   showSnackbar(context,
-                        //       "Failed! Update contact failed \n Error ${e.toString()}");
-                        // }
                         ref
                             .read(userRepoProvider)
-                            .updateOne(widget.user.id, newUser)
+                            .createOne(newUser)
                             .then((value) {
-                          showSnackbar(context, "Success! Updated contact");
-                          Navigator.of(context)
-                              .popUntil((route) => route.isFirst);
+                          value.fold((l) {
+                            showSnackbar(context, "Error! ${l.toString()}");
+                          }, (r) {
+                            clearInput();
+                            showSnackbar(
+                                context, "Success! Created new contact");
+                            Navigator.pop(context);
+                          });
                         });
                       },
                       child: Text("Save"),

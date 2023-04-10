@@ -2,16 +2,16 @@ import 'dart:convert';
 
 import 'package:crud_riverpod/core/api/endpoints.dart';
 import 'package:crud_riverpod/core/constant/constant.dart';
-import 'package:crud_riverpod/features/user/data/models/user_model.dart';
+import 'package:crud_riverpod/features/user/models/user_model.dart';
 import 'package:crud_riverpod/requests/request_user.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserRemoteDataSource {
+class UserService {
   late Dio _dio;
 
-  UserRemoteDataSource() {
+  UserService() {
     _dio = Dio(BaseOptions(
         baseUrl: Endpoints.baseURL,
         responseType: ResponseType.json,
@@ -41,6 +41,6 @@ class UserRemoteDataSource {
   }
 }
 
-final userRemoteDataSourceProvider = Provider<UserRemoteDataSource>((ref) {
-  return UserRemoteDataSource();
+final userServiceProvider = Provider<UserService>((ref) {
+  return UserService();
 });

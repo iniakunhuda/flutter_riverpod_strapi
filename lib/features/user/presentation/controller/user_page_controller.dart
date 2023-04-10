@@ -1,4 +1,4 @@
-import 'package:crud_riverpod/features/user/data/repositories/user_repository.dart';
+import 'package:crud_riverpod/features/user/repositories/user_repository.dart';
 import 'package:crud_riverpod/requests/request_user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

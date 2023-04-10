@@ -1,5 +1,5 @@
-import 'package:crud_riverpod/models/update_user_model.dart';
-import 'package:crud_riverpod/features/user/data/models/user_model.dart';
+import 'package:crud_riverpod/features/user/models/update_user_model.dart';
+import 'package:crud_riverpod/features/user/models/user_model.dart';
 import 'package:crud_riverpod/requests/request_user.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';

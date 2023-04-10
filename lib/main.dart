@@ -1,5 +1,4 @@
-import 'package:crud_riverpod/features/user/presentation/pages/user_pages.dart';
-import 'package:crud_riverpod/pages/home/home_screen.dart';
+import 'package:crud_riverpod/features/user/screens/list/user_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

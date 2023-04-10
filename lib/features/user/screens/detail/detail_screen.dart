@@ -1,9 +1,9 @@
-import 'package:crud_riverpod/features/user/data/models/user_model.dart';
-import 'package:crud_riverpod/features/user/data/repositories/user_repository.dart';
-import 'package:crud_riverpod/features/user/presentation/pages/user_page_controller.dart';
+import 'package:crud_riverpod/features/user/models/user_model.dart';
+import 'package:crud_riverpod/features/user/repositories/user_repository.dart';
+import 'package:crud_riverpod/features/user/presentation/controller/user_page_controller.dart';
+import 'package:crud_riverpod/features/user/screens/edit/edit_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'package:crud_riverpod/pages/edit/edit_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DetailScreen extends ConsumerStatefulWidget {

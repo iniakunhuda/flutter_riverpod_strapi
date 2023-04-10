@@ -1,7 +1,7 @@
-import 'package:crud_riverpod/features/user/data/models/user_model.dart';
-import 'package:crud_riverpod/features/user/presentation/pages/user_page_controller.dart';
-import 'package:crud_riverpod/pages/create/create_screen.dart';
-import 'package:crud_riverpod/pages/detail/detail_screen.dart';
+import 'package:crud_riverpod/features/user/models/user_model.dart';
+import 'package:crud_riverpod/features/user/presentation/controller/user_page_controller.dart';
+import 'package:crud_riverpod/features/user/screens/create/create_screen.dart';
+import 'package:crud_riverpod/features/user/screens/detail/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
