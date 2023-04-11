@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:crud_riverpod/core/api/endpoints.dart';
 import 'package:crud_riverpod/core/constant/constant.dart';
+import 'package:crud_riverpod/features/user/dto/error_dto.dart';
 import 'package:crud_riverpod/features/user/dto/user_dto.dart';
 import 'package:crud_riverpod/features/user/models/user_model.dart';
 import 'package:dio/dio.dart';
@@ -54,7 +55,7 @@ class UserService {
     );
   }
 
-  Future<UserModel> createOne(UserRequest request) async {
+  Future<dynamic> createOne(UserRequest request) async {
     debugPrint('body: ${request.toJson()}');
 
     try {
@@ -72,12 +73,12 @@ class UserService {
         avatar: user.data.attributes.avatar,
       );
     } on DioError catch (ex) {
-      debugPrint(ex.toString());
-      throw Exception(ex.message);
+      debugPrint(ex.response?.data.toString());
+      return ErrorResponseDTO.fromJson(ex.response?.data);
     }
   }
 
-  Future<UserModel> updateOne(int userId, UserRequest request) async {
+  Future<dynamic> updateOne(int userId, UserRequest request) async {
     try {
       final response = await _dio.put(
         "${Endpoints.userURL}/$userId",
@@ -95,14 +96,19 @@ class UserService {
         avatar: user.data.attributes.avatar,
       );
     } on DioError catch (ex) {
-      debugPrint(ex.toString());
-      throw Exception(ex.message);
+      debugPrint(ex.response?.data.toString());
+      return ErrorResponseDTO.fromJson(ex.response?.data);
     }
   }
 
-  Future<bool> deleteOne(int userId) async {
-    final response = await _dio.delete("${Endpoints.userURL}/$userId");
-    return true;
+  Future<dynamic> deleteOne(int userId) async {
+    try {
+      final response = await _dio.delete("${Endpoints.userURL}/$userId");
+      return response.statusCode == 200;
+    } on DioError catch (ex) {
+      debugPrint(ex.response?.data.toString());
+      return ErrorResponseDTO.fromJson(ex.response?.data);
+    }
   }
 }
 
