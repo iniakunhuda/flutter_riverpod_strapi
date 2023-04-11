@@ -18,6 +18,16 @@
 - Strapi API (https://strapi.io/)
 - dio (https://pub.dev/packages/dio)
 - dartz (https://pub.dev/packages/dartz)
+- go_router (for routing management) (https://pub.dev/packages/go_router)
+- freezed (generate dataclass) (https://pub.dev/packages/freezed)
+- derry.yaml (command-line flutter)
+
+#### How to generate freezed file
+run in terminal
+```
+derry build
+```
+
 
 ### Strapi Setup
 
