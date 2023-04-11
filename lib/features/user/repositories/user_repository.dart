@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:crud_riverpod/features/user/dto/error_dto.dart';
 import 'package:crud_riverpod/features/user/models/user_model.dart';
 import 'package:crud_riverpod/features/user/services/user_service.dart';
 import 'package:dartz/dartz.dart';
@@ -45,11 +46,12 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   Future<Either<String, UserModel>> createOne(UserRequest requestUser) async {
-    try {
-      final response = await userService.createOne(requestUser);
+    final response = await userService.createOne(requestUser);
+
+    if (response is ErrorResponseDTO) {
+      return Left(response.error.message);
+    } else {
       return Right(response);
-    } catch (e) {
-      return Left(e.toString());
     }
   }
 
@@ -57,20 +59,20 @@ class UserRepositoryImpl implements UserRepository {
     int userId,
     UserRequest requestUser,
   ) async {
-    try {
-      final response = await userService.updateOne(userId, requestUser);
+    final response = await userService.updateOne(userId, requestUser);
+    if (response is ErrorResponseDTO) {
+      return Left(response.error.message);
+    } else {
       return Right(response);
-    } catch (e) {
-      return Left(e.toString());
     }
   }
 
   Future<Either<String, bool>> deleteOne(int userId) async {
-    try {
-      final response = await userService.deleteOne(userId);
+    final response = await userService.deleteOne(userId);
+    if (response is ErrorResponseDTO) {
+      return Left(response.error.message);
+    } else {
       return Right(response);
-    } catch (e) {
-      return Left(e.toString());
     }
   }
 }

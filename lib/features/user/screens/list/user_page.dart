@@ -4,6 +4,7 @@ import 'package:crud_riverpod/features/user/screens/create/create_screen.dart';
 import 'package:crud_riverpod/features/user/screens/detail/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class UserPage extends ConsumerStatefulWidget {
   const UserPage({super.key});
@@ -36,12 +37,11 @@ class _UserPageState extends ConsumerState<UserPage> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CreateScreen(),
-            ),
-          );
+          context.pushNamed("create").then(
+                (value) => {
+                  ref.read(userControllerProvider.notifier).getAll(),
+                },
+              );
         },
       ),
       body: RefreshIndicator(
@@ -54,12 +54,13 @@ class _UserPageState extends ConsumerState<UserPage> {
                 itemBuilder: (_, index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              DetailScreen(userId: users[index].id),
-                        ),
+                      context.pushNamed(
+                        "detail",
+                        params: {"id": users[index].id.toString()},
+                      ).then(
+                        (value) => {
+                          ref.read(userControllerProvider.notifier).getAll(),
+                        },
                       );
                     },
                     child: Card(

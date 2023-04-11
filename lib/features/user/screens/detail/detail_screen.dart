@@ -5,6 +5,7 @@ import 'package:crud_riverpod/features/user/screens/edit/edit_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class DetailScreen extends ConsumerStatefulWidget {
   final int userId;
@@ -77,11 +78,9 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
                     children: [
                       ElevatedButton.icon(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => EditScreen(user: user),
-                            ),
+                          context.pushNamed(
+                            "edit",
+                            params: {"id": user.id.toString()},
                           );
                         },
                         icon: const Icon(Icons.edit),
@@ -90,14 +89,40 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
                       SizedBox(width: 10),
                       ElevatedButton.icon(
                         onPressed: () {
-                          ref
-                              .read(userRepoProvider)
-                              .deleteOne(user.id)
-                              .then((value) {
-                            showSnackbar(context, "Success! Deleted contact");
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text(
+                                    "Delete ${user.first_name} ${user.last_name}"),
+                                content: Text(
+                                    "Would you like to delete data permanently?"),
+                                actions: [
+                                  TextButton(
+                                    child: Text("Cancel"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: Text("Yes"),
+                                    onPressed: () {
+                                      ref
+                                          .read(userRepoProvider)
+                                          .deleteOne(user.id)
+                                          .then((value) {
+                                        showSnackbar(context,
+                                            "Success! Deleted contact");
 
-                            Navigator.pop(context);
-                          });
+                                        Navigator.of(context)
+                                            .popUntil((route) => route.isFirst);
+                                      });
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                         },
                         icon: const Icon(Icons.delete),
                         label: const Text("Delete"),
