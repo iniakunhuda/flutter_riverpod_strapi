@@ -1,5 +1,3 @@
-## Flutter RiverPod & Strapi RESTAPI
-
 <h1 align="center">Flutter RiverPod & Strapi RESTAPI</h1>
 
 <br>
