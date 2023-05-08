@@ -2,7 +2,7 @@
 
 <br>
 
-<a href="https://flutter.io/">Flutter</a> Flutter allows you to build beautiful native apps on iOS and Android Platforms from a single codebase. The main goal of this repository is to learn how to use Riverpod (state management) with simple implementation of CRUD from Strapi
+<a href="https://flutter.io/">Flutter</a> allows you to build beautiful native apps on iOS and Android Platforms from a single codebase. The main goal of this repository is to learn how to use Riverpod (state management) with simple implementation of CRUD from Strapi
 
 <div>
 <img src="https://raw.githubusercontent.com/iniakunhuda/flutter_riverpod_strapi/main/preview/preview_1.png" alt="feed example" width="200">
