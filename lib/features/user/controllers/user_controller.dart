@@ -25,6 +25,7 @@ class UserController extends StateNotifier<UserState> {
   getAll() async {
     state = state.copyWith(isLoading: true);
     final response = await ref.read(userRepoProvider).getAll();
+    debugPrint('RESPONSEEE {$response.toString()}');
     response.fold(
       (l) => debugPrint(l),
       (r) => state = state.copyWith(isLoading: false, users: r),

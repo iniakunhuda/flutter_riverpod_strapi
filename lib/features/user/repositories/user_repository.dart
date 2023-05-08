@@ -1,7 +1,9 @@
 import 'dart:developer';
 
+import 'package:crud_riverpod/core/helper/network_detector.dart';
 import 'package:crud_riverpod/features/user/dto/error_dto.dart';
 import 'package:crud_riverpod/features/user/models/user_model.dart';
+import 'package:crud_riverpod/features/user/services/offline_user_service.dart';
 import 'package:crud_riverpod/features/user/services/user_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -22,14 +24,25 @@ abstract class UserRepository {
 
 class UserRepositoryImpl implements UserRepository {
   final UserService userService;
+  final OfflineUserService offlineUserService;
+  Ref ref;
 
   UserRepositoryImpl({
     required this.userService,
+    required this.offlineUserService,
+    required this.ref,
   });
 
   Future<Either<String, List<UserModel>>> getAll() async {
     try {
-      final response = await userService.getAll();
+      List<UserModel> response;
+      var connectivity = ref.watch(connectivityStatusProviders);
+      if (connectivity == ConnectivityStatus.isDisconnected) {
+        response = await offlineUserService.getAll();
+      } else {
+        response = await userService.getAll();
+      }
+
       return Right(response);
     } catch (e) {
       return Left(e.toString());
@@ -38,7 +51,15 @@ class UserRepositoryImpl implements UserRepository {
 
   Future<Either<String, UserModel>> getOne(int userId) async {
     try {
-      final response = await userService.getOne(userId);
+      var response;
+
+      var connectivity = ref.watch(connectivityStatusProviders);
+      if (connectivity == ConnectivityStatus.isDisconnected) {
+        response = await offlineUserService.getOne(userId);
+      } else {
+        response = await userService.getOne(userId);
+      }
+
       return Right(response);
     } catch (e) {
       return Left(e.toString());
@@ -46,7 +67,13 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   Future<Either<String, UserModel>> createOne(UserRequest requestUser) async {
-    final response = await userService.createOne(requestUser);
+    var response;
+    var connectivity = ref.watch(connectivityStatusProviders);
+    if (connectivity == ConnectivityStatus.isDisconnected) {
+      response = await offlineUserService.createOne(requestUser);
+    } else {
+      response = await userService.createOne(requestUser);
+    }
 
     if (response is ErrorResponseDTO) {
       return Left(response.error.message);
@@ -59,7 +86,14 @@ class UserRepositoryImpl implements UserRepository {
     int userId,
     UserRequest requestUser,
   ) async {
-    final response = await userService.updateOne(userId, requestUser);
+    var response;
+    var connectivity = ref.watch(connectivityStatusProviders);
+    if (connectivity == ConnectivityStatus.isDisconnected) {
+      response = await offlineUserService.updateOne(userId, requestUser);
+    } else {
+      response = await userService.updateOne(userId, requestUser);
+    }
+
     if (response is ErrorResponseDTO) {
       return Left(response.error.message);
     } else {
@@ -79,5 +113,11 @@ class UserRepositoryImpl implements UserRepository {
 
 final userRepoProvider = Provider<UserRepository>((ref) {
   final userService = ref.watch(userServiceProvider);
-  return UserRepositoryImpl(userService: userService);
+  final offlineUserService = ref.watch(offlineUserServiceProvider);
+
+  return UserRepositoryImpl(
+    userService: userService,
+    offlineUserService: offlineUserService,
+    ref: ref,
+  );
 });
