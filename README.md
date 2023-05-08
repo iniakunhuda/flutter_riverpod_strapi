@@ -12,9 +12,18 @@
 </div>
 </p>
 
+
+### Features
+
+- CRUD Rest API with Strapi
+- Offline Support Mode
+- Derry command flutter
+
+
 ### Package
 
 - RiverPod (https://riverpod.dev/)
+- Isar Database (https://isar.dev/)
 - Strapi API (https://strapi.io/)
 - dio (https://pub.dev/packages/dio)
 - dartz (https://pub.dev/packages/dartz)
