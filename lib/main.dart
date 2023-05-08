@@ -1,3 +1,5 @@
+import 'package:crud_riverpod/core/database/database.dart';
+import 'package:crud_riverpod/features/user/db_schema/user_db.dart';
 import 'package:crud_riverpod/features/user/screens/create/create_screen.dart';
 import 'package:crud_riverpod/features/user/screens/detail/detail_screen.dart';
 import 'package:crud_riverpod/features/user/screens/edit/edit_screen.dart';
@@ -6,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await isarInit();
   runApp(const ProviderScope(child: MyApp()));
 }
 
