@@ -7,12 +7,10 @@
 [![platform](https://img.shields.io/badge/platform-Flutter-blue.svg)](https://flutter.dev/)
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/radensaleh/flutter_riverpod_strapi)
 
-<br>
-
 ## Quick start
 This is a normal flutter app. You should follow the instructions in the [official documentation](https://flutter.io/docs/get-started/install).
 This project uses **Riverpod** to separate the business logic with UI itself.
-And also on this project uses **Clean Architecture** approach to separate each feature ([domains](https://github.com/radensaleh/Quran-App/tree/master/domains/quran), [features](https://github.com/radensaleh/Quran-App/tree/master/features), [resources](https://github.com/radensaleh/Quran-App/tree/master/resources/resources), [shared_libraries](https://github.com/radensaleh/Quran-App/tree/master/shared_libraries) modules).
+And also on this project uses **Clean Architecture** approach to separate each feature.
 
 ## Structure 🔥
 
@@ -101,7 +99,7 @@ And also on this project uses **Clean Architecture** approach to separate each f
 Don't forget to follow me, fork and give me a ⭐
 
 
-### How to run app
+## How to run app
 
 Install package
 ```
@@ -122,7 +120,7 @@ API_BASE_URL=xxx
 ```
 
 
-### Strapi Setup
+## Strapi Setup
 
 Install <a href="https://github.com/strapi/strapi" target="_blank">Strapi</a> in your local computer
 
@@ -133,6 +131,4 @@ npm start
 
 Create collection structure like this
 
-<br/>
-<br/>
 <img src="https://raw.githubusercontent.com/iniakunhuda/flutter_riverpod_strapi/main/preview/strapi.png" alt="feed example" width="100%">
