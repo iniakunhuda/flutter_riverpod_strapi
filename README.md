@@ -3,9 +3,9 @@
 ![GitHub forks](https://img.shields.io/github/forks/iniakunhuda/flutter_riverpod_strapi?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/iniakunhuda/flutter_riverpod_strapi?style=social)
 
-[![GitHub license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/radensaleh/flutter_riverpod_strapi/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/iniakunhuda/flutter_riverpod_strapi/blob/master/LICENSE)
 [![platform](https://img.shields.io/badge/platform-Flutter-blue.svg)](https://flutter.dev/)
-[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/radensaleh/flutter_riverpod_strapi)
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/iniakunhuda/flutter_riverpod_strapi)
 
 ## Quick start
 This is a normal flutter app. You should follow the instructions in the [official documentation](https://flutter.io/docs/get-started/install).
