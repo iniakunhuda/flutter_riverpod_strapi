@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_strapi/features/contact/data/model/contact_model.dart';
+import 'package:flutter_riverpod_strapi/features/contact/domain/provider/contact_provider.dart';
 import 'package:flutter_riverpod_strapi/features/contact/domain/repository/contact_repository_impl.dart';
 
 class CreateScreen extends ConsumerStatefulWidget {
@@ -137,6 +138,7 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                             showSnackbar(
                                 context, "Success! Created new contact");
                             Navigator.pop(context);
+                            ref.read(contactProvider.notifier).getAll();
                           });
                         });
                       },
