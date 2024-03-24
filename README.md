@@ -60,7 +60,7 @@ And also on this project uses **Clean Architecture** approach to separate each f
     │   │   │       └── widget
 
 
-### Features
+## Features
 
 - Add, Edit and Remove Contact
 - Rest API from Strapi
