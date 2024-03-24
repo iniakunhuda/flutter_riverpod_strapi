@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.crud_riverpod">
+    package="com.example.flutter_riverpod_strapi">
    <application
-        android:label="crud_riverpod"
+        android:label="flutter_riverpod_strapi"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -13,7 +13,7 @@ class ConnectivityStatusNotifier extends StateNotifier<ConnectivityStatus> {
   ConnectivityStatus? newState;
   bool isChecked = false;
 
-  ConnectivityStatusNotifier() : super(ConnectivityStatus.isDisconnected) {
+  ConnectivityStatusNotifier() : super(ConnectivityStatus.isConnected) {
     if (state == ConnectivityStatus.isConnected) {
       lastResult = ConnectivityStatus.isConnected;
     } else {

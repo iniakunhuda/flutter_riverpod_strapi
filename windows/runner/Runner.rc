@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "crud_riverpod" "\0"
+            VALUE "FileDescription", "flutter_riverpod_strapi" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "crud_riverpod" "\0"
+            VALUE "InternalName", "flutter_riverpod_strapi" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "crud_riverpod.exe" "\0"
-            VALUE "ProductName", "crud_riverpod" "\0"
+            VALUE "OriginalFilename", "flutter_riverpod_strapi.exe" "\0"
+            VALUE "ProductName", "flutter_riverpod_strapi" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

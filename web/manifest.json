@@ -1,6 +1,6 @@
 {
-    "name": "crud_riverpod",
-    "short_name": "crud_riverpod",
+    "name": "flutter_riverpod_strapi",
+    "short_name": "flutter_riverpod_strapi",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

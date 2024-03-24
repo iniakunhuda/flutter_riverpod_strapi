@@ -1,11 +1,7 @@
-import 'package:crud_riverpod/features/user/dto/user_dto.dart';
-import 'package:crud_riverpod/features/user/models/user_model.dart';
-import 'package:crud_riverpod/features/user/repositories/user_repository.dart';
-import 'package:crud_riverpod/features/user/controllers/user_controller.dart';
-import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod_strapi/features/contact/data/model/contact_model.dart';
+import 'package:flutter_riverpod_strapi/features/contact/domain/repository/contact_repository_impl.dart';
 
 class CreateScreen extends ConsumerStatefulWidget {
   const CreateScreen({super.key});
@@ -122,7 +118,8 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        UserRequest newUser = UserRequest(
+                        ContactModel newUser = ContactModel(
+                          id: 0,
                           first_name: fnameController.text,
                           last_name: lnameController.text,
                           email: emailController.text,
@@ -130,8 +127,8 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                         );
 
                         ref
-                            .read(userRepoProvider)
-                            .createOne(newUser)
+                            .read(contactRepositoryProvider)
+                            .createOne(request: newUser)
                             .then((value) {
                           value.fold((l) {
                             showSnackbar(context, "Error! ${l.toString()}");
