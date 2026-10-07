@@ -6,6 +6,8 @@
 
 <a href="https://flutter.io/">Flutter</a> Flutter allows you to build beautiful native apps on iOS and Android Platforms from a single codebase. The main goal of this repository is to learn how to use Riverpod (state management) with simple implementation of CRUD from Strapi
 
+This is example of app result
+
 <div>
 <img src="https://raw.githubusercontent.com/iniakunhuda/flutter_riverpod_strapi/main/preview/preview_1.png" alt="feed example" width="200">
 <img src="https://raw.githubusercontent.com/iniakunhuda/flutter_riverpod_strapi/main/preview/preview_2.png" alt="feed example" width="200">
